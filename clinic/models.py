@@ -24,7 +24,8 @@ class Doctor(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
-    specialization = models.CharField(max_length=30, choices=SPECIALIZATION_CHOICES)
+    phone = models.CharField(max_length=20)
+    specialization = models.CharField(max_length=20, choices=SPECIALIZATION_CHOICES)
     room_number = models.CharField(max_length=20)
 
     def __str__(self):
