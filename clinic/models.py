@@ -11,3 +11,21 @@ class Patient(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+
+class Doctor(models.Model):
+    SPECIALIZATION_CHOICES = [
+        ("cardiologist", "Cardiologist"),
+        ("dermatologist", "Dermatologist"),
+        ("pediatrican", "Pediatrican"),
+        ("orthopedist", "Orthopedist"),
+    ]
+
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField(unique=True)
+    specialization = models.CharField(max_length=30, choices=SPECIALIZATION_CHOICES)
+    room_number = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"Dr {self.first_name} {self.last_name} - {self.specialization}"
