@@ -1,9 +1,5 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 def home(request):
-    return HttpResponse("""
-    <h1>ClinicFlow</h1>
-    <p>Welcome to the clinic managment system.</p>
-    <p>This is my Django project for Object-Oriented Programming.</p>
-    """)
+    return render(request, 'home.html')
 
