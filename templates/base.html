@@ -9,9 +9,10 @@
 <header>
     <h1>ClinicFlow</h1>
     <nav>
-        <a href="/">Home</a> |
-        <a href="/patients/">Patients</a> |
-        <a href="/doctors/">Doctors</a> |
+        <a href="{% url 'home' %}">Home</a> |
+        <a href="{% url 'patient_list' %}">Patients</a> |
+        <a href="{% url 'doctor_list' %}">Doctors</a> |
+        <a href="{% url 'appointment_list' %}">Appointments</a> |
         <a href="/admin/">Admin</a>
     </nav>
     <hr>

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Appointments | ClinicFlow{% endblock %}
+
+{% block content %}
+    <h2>Appointments</h2>
+
+    {% if appointments %}
+        <ul>
+        {% for appointment in appointments %}
+            <li>
+            Patient: {{ appointment.patient.first_name }} {{ appointment.patient.last_name }} |
+            Doctor: Dr {{ appointment.doctor.first_name }} {{ appointment.doctor.last_name }} |
+            Date: {{ appointment.date }} |
+            Time: {{ appointment.time }} |
+            Status: {{ appointment.status }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No appointments found.</p>
+    {% endif %}
+{% endblock %}

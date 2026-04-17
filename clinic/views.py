@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Patient, Doctor
+from .models import Patient, Doctor, Appointment
 
 
 def home(request):
@@ -13,3 +13,7 @@ def patient_list(request):
 def doctor_list(request):
     doctors = Doctor.objects.all()
     return render(request, "doctor_list.html", {"doctors": doctors})
+
+def appointment_list(request):
+    appointments = Appointment.objects.all()
+    return render(request, "appointment_list.html", {"appointments": appointments})
