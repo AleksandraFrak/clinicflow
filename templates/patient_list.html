@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Patients | ClinicFlow{% endblock %}
+
+{% block content %}
+    <h2>Patients</h2>
+
+    {% if patients %}
+        <ul>
+        {%  for patient in patients %}
+            <li>
+            {{ patient.first_name }} {{ patient.last_name }} |
+            PESEL: {{ patient.pesel }} |
+            Email: {{ patient.email }} |
+            Phone: {{ patient.phone }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No patients found.</p>
+    {% endif %}
+{% endblock %}
