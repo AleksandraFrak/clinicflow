@@ -6,13 +6,29 @@ from .views import (
     appointment_list,
     add_patient,
     edit_patient,
+    delete_patient,
 )
 
 urlpatterns = [
     path("", home, name="home"),
+
     path("patients/", patient_list, name="patient_list"),
+
     path("patients/add/", add_patient, name="add_patient"),
-    path("patients/edit/<int:patient_id>/", edit_patient, name="edit_patient"),
+
+    path(
+        "patients/edit/<int:patient_id>/",
+        edit_patient,
+        name="edit_patient",
+    ),
+
+    path(
+        "patients/delete/<int:patient_id>/",
+        delete_patient,
+        name="delete_patient",
+    ),
+
     path("doctors/", doctor_list, name="doctor_list"),
+
     path("appointments/", appointment_list, name="appointment_list"),
 ]
