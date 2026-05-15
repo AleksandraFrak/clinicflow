@@ -5,17 +5,26 @@
     <h2>Doctors</h2>
 
     {% if doctors %}
-        <ul>
-        {%  for doctor in doctors %}
-            <li>
-            {{ doctor.first_name }} {{ doctor.last_name }} |
-            Specialization: {{ doctor.specialization }} |
-            Email: {{ patient.email }} |
-            Phone: {{ patient.phone }} |
-            Room: {{ doctor.room_number }}
-            </li>
-        {% endfor %}
-        </ul>
+        <table border="1" cellpadding="8">
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Specialization</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Room</th>
+            </tr>
+            {%  for doctor in doctors %}
+            <tr>
+                <td>{{ doctor.first_name }}</td>
+                <td>{{ doctor.last_name }}</td>
+                <td>{{ doctor.get_specialization_display }}</td>
+                <td>{{ doctor.email }}</td>
+                <td>{{ doctor.phone }}</td>
+                <td>{{ doctor.room_number }}</td>
+            </tr>
+            {% endfor %}
+        </table>
     {% else %}
         <p>No doctors found.</p>
     {% endif %}
