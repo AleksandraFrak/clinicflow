@@ -4,6 +4,8 @@
 {% block content %}
     <h2>Patients</h2>
 
+    <a href="{% url 'add_patient' %}">Add new patient</a>
+
     {% if patients %}
         <table border="1" cellpadding="8">
             <tr>
