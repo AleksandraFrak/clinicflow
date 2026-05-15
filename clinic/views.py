@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Patient, Doctor, Appointment
 from .forms import PatientForm
 
@@ -34,3 +34,19 @@ def add_patient(request):
         form = PatientForm()
 
     return render(request, "add_patient.html", {"form": form})
+
+
+def edit_patient(request, patient_id):
+    patient = get_object_or_404(Patient, id=patient_id)
+
+    if request.method == "POST":
+        form = PatientForm(request.POST, instance=patient)
+
+        if form.is_valid():
+            form.save()
+            return redirect("patient_list")
+
+    else:
+        form = PatientForm(instance=patient)
+
+    return render(request, "edit_patient.html", {"form": form})
