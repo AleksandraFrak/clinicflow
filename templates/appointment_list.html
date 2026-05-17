@@ -15,6 +15,24 @@
     </a>
 </div>
 
+<form method="get" class="search-form">
+    <select name="status">
+        <option value="">All statuses</option>
+
+        {% for value, label in status_choices %}
+            <option value="{{ value }}" {% if status == value %}selected{% endif %}>
+                {{ label }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Filter</button>
+
+    {% if status %}
+        <a href="{% url 'appointment_list' %}" class="btn btn-secondary">Clear</a>
+    {% endif %}
+</form>
+
 {% if appointments %}
 
 <div class="card">

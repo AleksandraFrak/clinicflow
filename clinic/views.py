@@ -44,8 +44,18 @@ def doctor_list(request):
 
 
 def appointment_list(request):
+    status = request.GET.get("status", "")
+
     appointments = Appointment.objects.all()
-    return render(request, "appointment_list.html", {"appointments": appointments})
+
+    if status:
+        appointments = appointments.filter(status=status)
+
+    return render(request, "appointment_list.html", {
+        "appointments": appointments,
+        "status": status,
+        "status_choices": Appointment.STATUS_CHOICES,
+    })
 
 
 def add_patient(request):
