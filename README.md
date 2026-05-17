@@ -77,6 +77,7 @@ clinicflow/
 ├── manage.py
 ├── requirements.txt
 └── README.md
+```
 
 ---
 ## Installation
