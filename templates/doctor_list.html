@@ -27,6 +27,8 @@
                 <td>{{ doctor.room_number }}</td>
                 <td>
                     <a href="{% url 'edit_doctor' doctor.id %}">Edit</a>
+                    |
+                    <a href="{% url 'delete_doctor' doctor.id %}">Delete</a>
                 </td>
             </tr>
             {% endfor %}
