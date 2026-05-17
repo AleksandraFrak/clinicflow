@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Patient, Doctor, Appointment
-from .forms import PatientForm, DoctorForm
+from .forms import PatientForm, DoctorForm, AppointmentForm
 
 
 def home(request):
@@ -96,3 +96,16 @@ def delete_doctor(request, doctor_id):
         return redirect("doctor_list")
 
     return render(request, "delete_doctor.html", {"doctor": doctor})
+
+def add_appointment(request):
+    if request.method == "POST":
+        form = AppointmentForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect("appointment_list")
+
+    else:
+        form = AppointmentForm()
+
+    return render(request, "add_appointment.html", {"form": form})

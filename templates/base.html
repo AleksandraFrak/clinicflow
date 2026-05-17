@@ -2,24 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=decice-width, initial-sacle=1.0">
     <title>{% block title %}ClinicFlow{% endblock %}</title>
 </head>
 <body>
-    <header>
-        <h1>ClinicFlow</h1>
-        <nav>
-            <a href="{% url 'home' %}">Home</a> |
-            <a href="{% url 'patient_list' %}">Patients</a> |
-            <a href="{% url 'doctor_list' %}">Doctors</a> |
-            <a href="{% url 'appointment_list' %}">Appointments</a> |
-            <a href="/admin/">Admin</a>
-        </nav>
-        <hr>
-    </header>
+<header>
+    <h1>ClinicFlow</h1>
+    <nav>
+        <a href="{% url 'home' %}">Home</a> |
+        <a href="{% url 'patient_list' %}">Patients</a> |
+        <a href="{% url 'doctor_list' %}">Doctors</a> |
+        <a href="{% url 'appointment_list' %}">Appointments</a> |
+        <a href="/admin/">Admin</a>
+    </nav>
+    <hr>
+</header>
 
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
 </body>
 </html>
