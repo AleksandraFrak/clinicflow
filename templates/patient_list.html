@@ -15,6 +15,20 @@
     </a>
 </div>
 
+<form method="get" class="search-form">
+    <input
+        type="text"
+        name="q"
+        placeholder="Search patients..."
+        value="{{ query }}"
+    >
+    <button type="submit">Search</button>
+
+    {% if query %}
+        <a href="{% url 'patient_list' %}" class="btn btn-secondary">Clear</a>
+    {% endif %}
+</form>
+
 {% if patients %}
 
 <div class="card">

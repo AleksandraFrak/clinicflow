@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Patient, Doctor, Appointment
 from .forms import PatientForm, DoctorForm, AppointmentForm
+from django.db.models import Q
 
 
 def home(request):
@@ -19,8 +20,22 @@ def home(request):
 
 
 def patient_list(request):
+    query = request.GET.get("q", "")
+
     patients = Patient.objects.all()
-    return render(request, "patient_list.html", {"patients": patients})
+
+    if query:
+        patients = patients.filter(
+            Q(first_name__icontains=query) |
+            Q(last_name__icontains=query) |
+            Q(pesel__icontains=query) |
+            Q(email__icontains=query)
+        )
+
+    return render(request, "patient_list.html", {
+        "patients": patients,
+        "query": query,
+    })
 
 
 def doctor_list(request):

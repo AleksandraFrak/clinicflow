@@ -248,3 +248,18 @@ textarea:focus {
     font-size: 22px;
     color: #0f172a;
 }
+
+.search-form {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    max-width: 720px;
+    margin-bottom: 24px;
+    box-shadow: none;
+    padding: 0;
+    background: transparent;
+}
+
+.search-form input {
+    flex: 1;
+}
