@@ -1,37 +1,63 @@
 {% extends "base.html" %}
+
 {% block title %}Appointments | ClinicFlow{% endblock %}
 
 {% block content %}
-    <h2>Appointments</h2>
 
-    <a href="{% url 'add_appointment' %}">Add new appointment</a>
+<div class="page-header">
+    <div>
+        <h2>Appointments</h2>
+        <p>Manage patient visits, doctors, dates and appointment statuses.</p>
+    </div>
 
-    {% if appointments %}
-        <table border="1" cellpadding="8">
-            <tr>
-                <th>Patient</th>
-                <th>Doctor</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-            {%  for appointment in appointments %}
-            <tr>
-                <td>{{ appointment.patient.first_name }} {{ appointment.patient.last_name }}</td>
-                <td>Dr {{ appointment.doctor.first_name }} {{ appointment.doctor.last_name }}</td>
-                <td>{{ appointment.date}}</td>
-                <td>{{ appointment.time }}</td>
-                <td>{{ appointment.get_status_display }}</td>
-                <td>
-                    <a href="{% url 'edit_appointment' appointment.id %}">Edit</a>
-                    |
-                    <a href="{% url 'delete_appointment' appointment.id %}">Delete</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-    {% else %}
-        <p>No appointments found.</p>
-    {% endif %}
+    <a href="{% url 'add_appointment' %}" class="btn">
+        + Add Appointment
+    </a>
+</div>
+
+{% if appointments %}
+
+<div class="card">
+    <table>
+        <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for appointment in appointments %}
+        <tr>
+            <td>{{ appointment.patient }}</td>
+            <td>{{ appointment.doctor }}</td>
+            <td>{{ appointment.date }}</td>
+            <td>{{ appointment.time }}</td>
+            <td>{{ appointment.get_status_display }}</td>
+
+            <td>
+                <div class="actions">
+                    <a href="{% url 'edit_appointment' appointment.id %}" class="btn">
+                        Edit
+                    </a>
+
+                    <a href="{% url 'delete_appointment' appointment.id %}" class="btn btn-danger">
+                        Delete
+                    </a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% else %}
+
+<div class="empty-state">
+    No appointments found.
+</div>
+
+{% endif %}
+
 {% endblock %}

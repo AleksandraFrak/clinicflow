@@ -1,40 +1,71 @@
 {% extends "base.html" %}
+
 {% block title %}Patients | ClinicFlow{% endblock %}
 
 {% block content %}
-    <h2>Patients</h2>
 
-    <a href="{% url 'add_patient' %}">Add new patient</a>
+<div class="page-header">
+    <div>
+        <h2>Patients</h2>
+        <p>Manage clinic patients and medical records.</p>
+    </div>
 
-    {% if patients %}
-        <table border="1" cellpadding="8">
-            <tr>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>PESEL</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Birth date</th>
-                <th>Actions</th>
-            </tr>
+    <a href="{% url 'add_patient' %}" class="btn">
+        + Add Patient
+    </a>
+</div>
 
-            {% for patient in patients %}
-                <tr>
-                    <td>{{ patient.first_name }}</td>
-                    <td>{{ patient.last_name }}</td>
-                    <td>{{ patient.pesel }}</td>
-                    <td>{{ patient.email }}</td>
-                    <td>{{ patient.phone }}</td>
-                    <td>{{ patient.birth_date }}</td>
-                    <td>
-                        <a href="{% url 'edit_patient' patient.id %}">Edit</a>
-                        |
-                        <a href="{% url 'delete_patient' patient.id %}">Delete</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
-    {% else %}
-        <p>No patients found.</p>
-    {% endif %}
+{% if patients %}
+
+<div class="card">
+    <table>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>PESEL</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Birth date</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for patient in patients %}
+        <tr>
+            <td>{{ patient.first_name }}</td>
+            <td>{{ patient.last_name }}</td>
+            <td>{{ patient.pesel }}</td>
+            <td>{{ patient.email }}</td>
+            <td>{{ patient.phone }}</td>
+            <td>{{ patient.birth_date }}</td>
+
+            <td>
+                <div class="actions">
+                    <a
+                        href="{% url 'edit_patient' patient.id %}"
+                        class="btn"
+                    >
+                        Edit
+                    </a>
+
+                    <a
+                        href="{% url 'delete_patient' patient.id %}"
+                        class="btn btn-danger"
+                    >
+                        Delete
+                    </a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% else %}
+
+<div class="empty-state">
+    No patients found.
+</div>
+
+{% endif %}
+
 {% endblock %}

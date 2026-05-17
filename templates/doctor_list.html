@@ -1,39 +1,65 @@
 {% extends "base.html" %}
+
 {% block title %}Doctors | ClinicFlow{% endblock %}
 
 {% block content %}
-    <h2>Doctors</h2>
 
-    <a href="{% url 'add_doctor' %}">Add new doctor</a>
+<div class="page-header">
+    <div>
+        <h2>Doctors</h2>
+        <p>Manage doctors, specializations and office rooms.</p>
+    </div>
 
-    {% if doctors %}
-        <table border="1" cellpadding="8">
-            <tr>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Specialization</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Room</th>
-                <th>Actions</th>
-            </tr>
-            {%  for doctor in doctors %}
-            <tr>
-                <td>{{ doctor.first_name }}</td>
-                <td>{{ doctor.last_name }}</td>
-                <td>{{ doctor.get_specialization_display }}</td>
-                <td>{{ doctor.email }}</td>
-                <td>{{ doctor.phone }}</td>
-                <td>{{ doctor.room_number }}</td>
-                <td>
-                    <a href="{% url 'edit_doctor' doctor.id %}">Edit</a>
-                    |
-                    <a href="{% url 'delete_doctor' doctor.id %}">Delete</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-    {% else %}
-        <p>No doctors found.</p>
-    {% endif %}
+    <a href="{% url 'add_doctor' %}" class="btn">
+        + Add Doctor
+    </a>
+</div>
+
+{% if doctors %}
+
+<div class="card">
+    <table>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Specialization</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Room</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for doctor in doctors %}
+        <tr>
+            <td>{{ doctor.first_name }}</td>
+            <td>{{ doctor.last_name }}</td>
+            <td>{{ doctor.get_specialization_display }}</td>
+            <td>{{ doctor.email }}</td>
+            <td>{{ doctor.phone }}</td>
+            <td>{{ doctor.room_number }}</td>
+
+            <td>
+                <div class="actions">
+                    <a href="{% url 'edit_doctor' doctor.id %}" class="btn">
+                        Edit
+                    </a>
+
+                    <a href="{% url 'delete_doctor' doctor.id %}" class="btn btn-danger">
+                        Delete
+                    </a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% else %}
+
+<div class="empty-state">
+    No doctors found.
+</div>
+
+{% endif %}
+
 {% endblock %}
