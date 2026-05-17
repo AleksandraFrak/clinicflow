@@ -25,6 +25,8 @@
                 <td>{{ appointment.get_status_display }}</td>
                 <td>
                     <a href="{% url 'edit_appointment' appointment.id %}">Edit</a>
+                    |
+                    <a href="{% url 'delete_appointment' appointment.id %}">Delete</a>
                 </td>
             </tr>
             {% endfor %}
