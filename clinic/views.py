@@ -109,3 +109,18 @@ def add_appointment(request):
         form = AppointmentForm()
 
     return render(request, "add_appointment.html", {"form": form})
+
+def edit_appointment(request, appointment_id):
+    appointment = get_object_or_404(Appointment, id=appointment_id)
+
+    if request.method == "POST":
+        form = AppointmentForm(request.POST, instance=appointment)
+
+        if form.is_valid():
+            form.save()
+            return redirect("appointment_list")
+
+    else:
+        form = AppointmentForm(instance=appointment)
+
+    return render(request, "edit_appointment.html", {"form": form})
