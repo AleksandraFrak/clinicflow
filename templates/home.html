@@ -1,9 +1,59 @@
 {% extends "base.html" %}
 
-{% block title %}Home | ClinicFlow{% endblock %}
+{% block title %}Dashboard | ClinicFlow{% endblock %}
 
 {% block content %}
-    <h2>Welcome to ClinicFlow</h2>
-    <p>Welcome to the clinic management system.</p>
-    <p>This is Django project for Object-Oriented Programming.</p>
+
+<div class="page-header">
+    <div>
+        <h2>Dashboard</h2>
+        <p>Overview of clinic activity and upcoming appointments.</p>
+    </div>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <span>Patients</span>
+        <strong>{{ patients_count }}</strong>
+    </div>
+
+    <div class="stat-card">
+        <span>Doctors</span>
+        <strong>{{ doctors_count }}</strong>
+    </div>
+
+    <div class="stat-card">
+        <span>Appointments</span>
+        <strong>{{ appointments_count }}</strong>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Upcoming appointments</h3>
+
+    {% if latest_appointments %}
+        <table>
+            <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+            </tr>
+
+            {% for appointment in latest_appointments %}
+            <tr>
+                <td>{{ appointment.patient }}</td>
+                <td>{{ appointment.doctor }}</td>
+                <td>{{ appointment.date }}</td>
+                <td>{{ appointment.time }}</td>
+                <td>{{ appointment.get_status_display }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No appointments found.</p>
+    {% endif %}
+</div>
+
 {% endblock %}

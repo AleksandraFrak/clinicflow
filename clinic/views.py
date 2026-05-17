@@ -4,7 +4,18 @@ from .forms import PatientForm, DoctorForm, AppointmentForm
 
 
 def home(request):
-    return render(request, "home.html")
+    patients_count = Patient.objects.count()
+    doctors_count = Doctor.objects.count()
+    appointments_count = Appointment.objects.count()
+
+    latest_appointments = Appointment.objects.order_by("date", "time")[:5]
+
+    return render(request, "home.html", {
+        "patients_count": patients_count,
+        "doctors_count": doctors_count,
+        "appointments_count": appointments_count,
+        "latest_appointments": latest_appointments,
+    })
 
 
 def patient_list(request):

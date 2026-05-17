@@ -216,3 +216,35 @@ textarea:focus {
     color: #64748b;
     box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
 }
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.stat-card span {
+    color: #64748b;
+    font-weight: 600;
+}
+
+.stat-card strong {
+    display: block;
+    font-size: 42px;
+    margin-top: 12px;
+    color: #0f172a;
+}
+
+.card h3 {
+    margin-top: 0;
+    font-size: 22px;
+    color: #0f172a;
+}
